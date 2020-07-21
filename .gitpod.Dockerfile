@@ -1,11 +1,6 @@
 FROM gitpod/workspace-full
 
-RUN apt-get update && apt-get install -y \
-    wget \
-    unzip \
-  && rm -rf /var/lib/apt/lists/*
+RUN brew install terraform
 
-RUN wget --quiet https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip \
-  && unzip terraform_0.12.28_linux_amd64.zip \
-  && mv terraform /usr/bin \
-  && rm terraform_0.12.28_linux_amd64.zip
+RUN curl https://raw.githubusercontent.com/samstav/terraform-plugin-installer/master/install.sh | bash -s -- https://github.com/Mongey/terraform-provider-confluentcloud
+RUN curl https://raw.githubusercontent.com/samstav/terraform-plugin-installer/master/install.sh | bash -s -- https://github.com/Mongey/terraform-provider-kafka
